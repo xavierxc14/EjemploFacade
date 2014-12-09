@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProfesorEditDlg" widgetVar="ProfesorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProfesorTitle}">
+            <h:form id="ProfesorEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{profesorBean.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProfesorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{profesorBean.selected.id}" title="#{bundle.EditProfesorTitle_id}" required="true" requiredMessage="#{bundle.EditProfesorRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditProfesorLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{profesorBean.selected.nombres}" title="#{bundle.EditProfesorTitle_nombres}" required="true" requiredMessage="#{bundle.EditProfesorRequiredMessage_nombres}"/>
+                        <p:outputLabel value="#{bundle.EditProfesorLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{profesorBean.selected.apellidos}" title="#{bundle.EditProfesorTitle_apellidos}" required="true" requiredMessage="#{bundle.EditProfesorRequiredMessage_apellidos}"/>
+                        <p:outputLabel value="#{bundle.EditProfesorLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{profesorBean.selected.cedula}" title="#{bundle.EditProfesorTitle_cedula}" required="true" requiredMessage="#{bundle.EditProfesorRequiredMessage_cedula}"/>
+                        <p:outputLabel value="#{bundle.EditProfesorLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{profesorBean.selected.direccion}" title="#{bundle.EditProfesorTitle_direccion}" required="true" requiredMessage="#{bundle.EditProfesorRequiredMessage_direccion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{profesorBean.update}" value="#{bundle.Save}" update="display,:ProfesorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProfesorEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProfesorEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
